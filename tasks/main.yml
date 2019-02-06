@@ -10,7 +10,7 @@
     not in stack_upgrade.stderr
 
 - set_fact:
-    stack_installed: "{{ stack_upgrade.rc == 0 }}"
+    haskell_stack_installed: "{{ stack_upgrade.rc == 0 }}"
 
 - import_tasks: linux.yml
-  when: not stack_installed
+  when: not haskell_stack_installed
