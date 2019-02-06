@@ -1,1 +1,10 @@
 ---
+
+- name: download installer script
+  get_url:
+    url: "{{ haskell_stack_installer_url }}"
+    dest: "{{ haskell_stack_installer_path }}"
+    mode: a+x
+
+- name: run installer script
+  script: "{{ haskell_stack_installer_path }}"
