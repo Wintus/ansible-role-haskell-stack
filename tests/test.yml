@@ -1,4 +1,6 @@
 ---
+# test command:
+#   env ANSIBLE_ROLES_PATH=../ ansible-playbook tests/test.yml
 - hosts: localhost
   remote_user: root
   roles:
