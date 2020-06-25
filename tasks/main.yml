@@ -1,16 +1,17 @@
 ---
-# tasks file for ansible-role-haskell-stack
+- name: check stack installed
+  command: stack --version
+  register: stack_version
+  failed_when: no
+  changed_when: stack_version.rc != 0
 
-- name: try stack upgrade
+- name: Install stack
+  import_tasks: linux.yml
+  when: stack_version is changed
+
+- name: Upgrade stack
   command: stack upgrade
   register: stack_upgrade
-  failed_when: no
   changed_when: |
     'Skipping binary upgrade, you are already running the most recent version'
     not in stack_upgrade.stderr
-
-- set_fact:
-    haskell_stack_installed: "{{ stack_upgrade.rc == 0 }}"
-
-- import_tasks: linux.yml
-  when: not haskell_stack_installed
