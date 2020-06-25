@@ -5,10 +5,11 @@
   failed_when: no
   changed_when: stack_version.rc != 0
 
-- import_tasks: linux.yml
+- name: Install stack
+  import_tasks: linux.yml
   when: stack_version is changed
 
-- name: try stack upgrade
+- name: Upgrade stack
   when: stack_version is not changed
   command: stack upgrade
   register: stack_upgrade
