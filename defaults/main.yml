@@ -1,4 +1,2 @@
 ---
-# defaults file for ansible-role-haskell-stack
 haskell_stack_installer_url: https://get.haskellstack.org
-haskell_stack_installer_path: /tmp/haskell-stack-installer.sh
