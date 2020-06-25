@@ -10,7 +10,6 @@
   when: stack_version is changed
 
 - name: Upgrade stack
-  when: stack_version is not changed
   command: stack upgrade
   register: stack_upgrade
   changed_when: |
