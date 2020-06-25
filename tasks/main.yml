@@ -13,8 +13,5 @@
     'Skipping binary upgrade, you are already running the most recent version'
     not in stack_upgrade.stderr
 
-- set_fact:
-    haskell_stack_installed: "{{ stack_version is not changed or stack_upgrade is not failed }}"
-
 - import_tasks: linux.yml
-  when: not haskell_stack_installed
+  when: stack_version is changed
