@@ -5,6 +5,9 @@
   failed_when: no
   changed_when: stack_version.rc != 0
 
+- import_tasks: linux.yml
+  when: stack_version is changed
+
 - name: try stack upgrade
   when: stack_version is not changed
   command: stack upgrade
@@ -12,6 +15,3 @@
   changed_when: |
     'Skipping binary upgrade, you are already running the most recent version'
     not in stack_upgrade.stderr
-
-- import_tasks: linux.yml
-  when: stack_version is changed
